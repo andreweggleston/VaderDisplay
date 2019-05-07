@@ -37,7 +37,9 @@
     });
     socket.on('reload', function () {
         console.log("i will reload now");
-        location.reload();
+        var a = new Audio('http://csh.rit.edu/~egg/rats.mp3');
+        a.play();
+        //location.reload();
     });
     function test() {
         socket.send("pee");
