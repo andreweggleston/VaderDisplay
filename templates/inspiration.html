@@ -5,6 +5,7 @@
     <style>
         html {
             background-size: cover;
+            background: hsl(0, 100%, 50%);
             overflow: hidden;
         }
 
@@ -28,7 +29,7 @@
         }
     </style>
 </head>
-<body>
+<body id="body">
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
 <script type="text/javascript" charset="UTF-8">
     var socket = io.connect('http://loudnoises-loudnoises.cs.house:80');
@@ -39,8 +40,45 @@
         console.log("i will reload now");
         var a = new Audio('http://csh.rit.edu/~egg/rats.mp3');
         a.play();
+        fade();
         //location.reload();
     });
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function fade() {
+        document.documentElement.style.background = 'hsl(0,100%,50%)';
+
+
+        var d = 1000;
+        for (var p = 0; p < 6; p++) {
+            for (var i = 0; i <= 255 / 2; i = i + 1) {
+                d += 10;
+                (function (ii, dd) {
+                    setTimeout(function () {
+                        document.documentElement.style.background = 'rgb(' + (255 / 2 + ii) + ',' + (255 - ii) + ',' + ii + ')';
+                        {#$('html').css('background', 'hsl(0,100%,' + ii + '%)');#}
+                    }, dd);
+                })(i, d);
+
+            }
+            await sleep(500);
+            for (i = 255; i >= 255 / 2; i = i - 1) {
+                d += 10;
+                (function (ii, dd) {
+                    setTimeout(function () {
+                        document.documentElement.style.background = 'rgb(' + (ii) + ',' + (255 - ii + 255/2) + ',' + (ii-(255/2)) + ')';
+                        console.log("eeee");
+                        {#$('html').css('background', 'hsl(0,100%,' + ii + '%)');#}
+                    }, dd);
+                })(i, d);
+            }
+            await sleep(500)
+        }
+    }
+
     function test() {
         socket.send("pee");
     }
