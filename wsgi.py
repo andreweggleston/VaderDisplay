@@ -44,6 +44,6 @@ def index():
 
 
 if __name__ == '__main__':
-    socketio.run()
+    socketio.run(app)
 
 application = app
