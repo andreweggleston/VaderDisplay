@@ -1,5 +1,2 @@
-requests
-pillow
 Flask
-gunicorn
-praw
+flask-socketio

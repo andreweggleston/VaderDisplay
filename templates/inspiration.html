@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <!-- <meta http-equiv="refresh" content="5"> -->
+    <!-- <meta http-equiv="refresh" content="5"> -->
     <style>
         html {
-            background: url({{ img_url }}) no-repeat center fixed;
             background-size: cover;
-            overflow:hidden;
+            overflow: hidden;
         }
 
         #shadow {
-          position: absolute;
-          left: 5%; right: 5%;
-          background: rgba(0, 0, 0, 0.6);
-          bottom: 5%;
+            position: absolute;
+            left: 5%;
+            right: 5%;
+            background: rgba(0, 0, 0, 0.6);
+            bottom: 5%;
         }
 
         #text {
-          position: relative;
+            position: relative;
         }
 
         #text p {
-          text-align: center;
-          color: #FFF;
-          font-weight: bold;
-          font-size: 125%;
+            text-align: center;
+            color: #FFF;
+            font-weight: bold;
+            font-size: 125%;
         }
     </style>
 </head>
 <body>
-    <div id="shadow">
-        <div id="text">
-            <p>{{ text }}</p>
-        </div>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+<script type="text/javascript" charset="UTF-8">
+    var socket = io.connect('http://loudnoises.a.csh.rit.edu:8000');
+    socket.on('connect', function () {
+        console.log('Websocket connected!');
+    });
+    function test() {
+        socket.send("button");
+    }
+</script>
+<button onclick="test()">oh god</button>
+<div id="shadow">
+    <div id="text">
+        <p>peee</p>
     </div>
+</div>
 </body>
 </html>
