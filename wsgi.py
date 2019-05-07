@@ -35,7 +35,7 @@ logger.debug("Logging configuration complete")
 def handle_message(message):
     logger.info("message: " + message)
     if message == 'pee':
-        socketio.send("reload")
+        socketio.emit("reload")
 
 
 @app.route("/")
