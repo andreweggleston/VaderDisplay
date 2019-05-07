@@ -31,7 +31,6 @@
             width: auto;
             height: auto;
             transform: translateX(-50%) translateY(-50%);
-            visibility: hidden;
         }
 
         #text p {
@@ -70,9 +69,7 @@
     }
 
     async function doanimate(){
-        document.getElementById("video").style.visibility = "visible";
         await sleep(23000);
-        document.getElementById("video").style.visibility = "hidden";
         document.getElementById("video").src = "https://inspirationalshitposts.a.csh.rit.edu/img_coke.jpg";
     }
 
