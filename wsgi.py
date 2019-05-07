@@ -31,6 +31,13 @@ logger.debug("Logging configuration complete")
 
 
 ################################################################################
+@socketio.on('play')
+def handle_play(audio, gif):
+    logger.info("audio: " + audio)
+    logger.info("gif: " + gif)
+    socketio.emit('play', (audio, gif))
+
+
 @socketio.on('message')
 def handle_message(message):
     logger.info("message: " + message)
@@ -41,7 +48,6 @@ def handle_message(message):
 @app.route("/")
 def index():
     logger.info('Script Start')
-
     return render_template('inspiration.html')
 
 

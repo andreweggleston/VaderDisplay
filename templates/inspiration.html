@@ -45,7 +45,7 @@
 <body id="body">
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
 <script type="text/javascript" charset="UTF-8">
-    var socket = io.connect('http://loudnoises-loudnoises.cs.house:80');
+    var socket = io.connect('http://localhost:8080');
     socket.on('connect', function () {
         console.log('Websocket connected!');
     });
@@ -54,19 +54,26 @@
         var a = new Audio('http://csh.rit.edu/~egg/rats.mp3');
         a.play();
         fade();
-        dorats();
+        doanimate();
 
         //location.reload();
+    });
+    socket.on('play', function(audio, gif) {
+        document.getElementById("video").src = gif;
+        var a = new Audio(audio);
+        a.play();
+        doanimate()
     });
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    async function dorats(){
+    async function doanimate(){
         document.getElementById("video").style.visibility = "visible";
         await sleep(23000);
         document.getElementById("video").style.visibility = "hidden";
+        document.getElementById("video").src = "";
     }
 
     async function fade() {
@@ -100,10 +107,11 @@
         }
     }
 
-    function test() {
-        socket.send("pee");
+    function test(sound, gif) {
+        console.log("sending event: 'play, " + sound + ", " + gif + "'");
+        socket.emit('play', sound, gif);
     }
 </script>
-<img class="video" id="video" src="http://itsyourbirthday.today/rats.gif" alt="heehee">
+<img class="video" id="video" alt="heehee">
 </body>
 </html>
