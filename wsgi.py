@@ -33,7 +33,7 @@ logger.debug("Logging configuration complete")
 ################################################################################
 @socketio.on('message')
 def handle_message(message):
-    logger.log("Recieved message: ", message)
+    logger.info("Recieved message: " + message)
 
 
 @app.route("/")
