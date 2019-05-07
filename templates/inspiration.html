@@ -21,6 +21,19 @@
             position: relative;
         }
 
+        .video {
+            z-index: -100;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            visibility: hidden;
+        }
+
         #text p {
             text-align: center;
             color: #FFF;
@@ -41,11 +54,19 @@
         var a = new Audio('http://csh.rit.edu/~egg/rats.mp3');
         a.play();
         fade();
+        dorats();
+
         //location.reload();
     });
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function dorats(){
+        document.getElementById("video").style.visibility = "visible";
+        await sleep(23000);
+        document.getElementById("video").style.visibility = "hidden";
     }
 
     async function fade() {
@@ -69,7 +90,7 @@
                 d += 10;
                 (function (ii, dd) {
                     setTimeout(function () {
-                        document.documentElement.style.background = 'rgb(' + (ii) + ',' + (255 - ii + 255/2) + ',' + (ii-(255/2)) + ')';
+                        document.documentElement.style.background = 'rgb(' + (ii) + ',' + (255 - ii + 255 / 2) + ',' + (ii - (255 / 2)) + ')';
                         console.log("eeee");
                         {#$('html').css('background', 'hsl(0,100%,' + ii + '%)');#}
                     }, dd);
@@ -84,6 +105,7 @@
     }
 </script>
 <button onclick="test()">oh god</button>
+<img class="video" id="video" src="http://itsyourbirthday.today/rats.gif" alt="heehee">
 <div id="shadow">
     <div id="text">
         <p>peee</p>
