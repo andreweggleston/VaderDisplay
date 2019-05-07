@@ -33,6 +33,7 @@ logger.debug("Logging configuration complete")
 ################################################################################
 @socketio.on('message')
 def handle_message(message):
+    logger.info("message: " + message)
     if message == 'pee':
         socketio.send("reload")
 
