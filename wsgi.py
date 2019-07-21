@@ -48,7 +48,7 @@ def handle_message(message):
 @app.route("/")
 def index():
     logger.info('Script Start')
-    return render_template('inspiration.html')
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
