@@ -1,5 +1,5 @@
-# CUNT (Continutally Updating Nature Textposts)
-# By: jackzachson (Zach Jackson)
+# visuelle
+# author: andrew eggleston
 
 import logging
 import config
